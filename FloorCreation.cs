@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomCreation : MonoBehaviour
+public class FloorCreation : MonoBehaviour
 {
     private readonly int floorMaxSize = 12;
     public int[,] floor = new int[12, 12];
@@ -11,6 +11,8 @@ public class RoomCreation : MonoBehaviour
     void Start()
     {
         CreateFloor(ref floor);
+
+        
     }
 
     // Update is called once per frame
@@ -27,7 +29,7 @@ public class RoomCreation : MonoBehaviour
             {
                 if (floor[i, j] == 1)
                 {
-                    Gizmos.DrawCube(new Vector3(i, j), new Vector3(1, 1));
+                    Gizmos.DrawCube(new Vector3(i, j), new Vector3(0.9f, 0.9f));
                 }
             }
         }
@@ -39,7 +41,8 @@ public class RoomCreation : MonoBehaviour
         EmptyMatrix(floor);
         floor[6, 6] = 1;
 
-        for (int i = 0; i < numberOfRoom; i++)
+        int i = 0;
+        while(i < numberOfRoom)
         {
             int x = Random.Range(0, floorMaxSize - 1);
             int y = Random.Range(0, floorMaxSize - 1);
@@ -47,9 +50,9 @@ public class RoomCreation : MonoBehaviour
             if (floor[x, y] != 1 && !IsAlone(floor, x, y))
             {
                 floor[x, y] = 1;
+                i++;
             }
         }
-        
     }
 
     public void EmptyMatrix(int[,] matrix)
