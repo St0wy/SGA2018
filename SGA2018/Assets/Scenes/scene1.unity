@@ -1585,7 +1585,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1073244092}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1618,7 +1618,7 @@ GameObject:
   - component: {fileID: 1170069822}
   - component: {fileID: 1170069823}
   - component: {fileID: 1170069824}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1716,7 +1716,7 @@ GameObject:
   - component: {fileID: 1353269953}
   - component: {fileID: 1353269954}
   - component: {fileID: 1353269956}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1874,11 +1874,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4189601212221966, guid: 284fe433660da8e4fa61ec6cbc53464f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 202.07437
+      value: 214.43
       objectReference: {fileID: 0}
     - target: {fileID: 4189601212221966, guid: 284fe433660da8e4fa61ec6cbc53464f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -140.54585
+      value: -134.23
       objectReference: {fileID: 0}
     - target: {fileID: 4189601212221966, guid: 284fe433660da8e4fa61ec6cbc53464f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2037,8 +2037,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1610990293}
   - component: {fileID: 1610990294}
-  m_Layer: 0
-  m_Name: Enemis1
+  m_Layer: 2
+  m_Name: SpriteEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2400,7 +2400,7 @@ GameObject:
   - component: {fileID: 1940897891}
   - component: {fileID: 1940897892}
   - component: {fileID: 1940897893}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2550,7 +2550,7 @@ GameObject:
   - component: {fileID: 2049345956}
   - component: {fileID: 2049345957}
   - component: {fileID: 2049345958}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2583,10 +2583,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  speed: 45
   player: {fileID: 1353269952}
-  enemyRigidBody: {fileID: 2049345957}
   lifePoint: 30
+  speed: 45
 --- !u!50 &2049345957
 Rigidbody2D:
   serializedVersion: 4

@@ -5,33 +5,31 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public int damage;
-    [SerializeField] [Range(1,500)] float speed;
     public GameObject player;
-    public Rigidbody2D enemyRigidBody;
+    public int lifePoint;
 
-    [SerializeField]
-    private int lifePoint;
-
+    [SerializeField] [Range(1, 500)] private float speed;
 
     private Transform target;
+    private float timer;
+    private BoxCollider2D playerCollider;
 
     // Use this for initialization
     void Start()
     {
-
+        playerCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Rigidbody2D enemyRigidBody = GetComponent<Rigidbody2D>();
         target = player.transform;
         Vector2 velocity = (transform.position - target.position).normalized * speed * 10 * Time.deltaTime;
 
         enemyRigidBody.velocity = -velocity;
-    }
 
-    public void MoveEnemy()
-    {
         
     }
+
 }
