@@ -33,7 +33,10 @@ public class RoomGenerator : MonoBehaviour
     public Tile wall2;
     public Tile wall3;
     public Tile ground;
-    public Tile groundCracked;
+    public Tile groundDark;
+    public Tile stone;
+    public Tile longGrass;
+    public Tile wood;
     public Tilemap highlightMap;
     public Tilemap groundMap;
 
@@ -65,7 +68,9 @@ public class RoomGenerator : MonoBehaviour
         int wallnbr = 0;
         int groundNbr = 0;
         int rngWall = UnityEngine.Random.Range(3, 5);
-        int rngGround = UnityEngine.Random.Range(3, 5);
+        int rngGround1 = UnityEngine.Random.Range(20, 25);
+        int rngGround2 = UnityEngine.Random.Range(20, 30);
+        int rngGround3 = UnityEngine.Random.Range(45, 50);
 
         map = new int[width, height];
         RandomFillRoom();
@@ -92,17 +97,46 @@ public class RoomGenerator : MonoBehaviour
                             {
                                 highlightTile = wallDark;
                             }
-                            //else
-                            //{
-                            //    if (x > 0 && y > 1)
-                            //    {
-                            //        if (groundNbr % rngGround == 0)
-                            //        {
-                            //            highlightTile = groundCracked;
-                            //            rngGround = UnityEngine.Random.Range(7, 15);
-                            //        }
-                            //    }
-                            //}
+
+                            if (y - 2 != -1)
+                            {
+                                if (map[x, y - 2] == 1 && map[x, y] == 0 && map[x, y - 1] == 0)
+                                {
+                                    highlightTile = groundDark;
+                                }
+                            }
+                        }
+
+                        if (x > 0 && map[x, y - 1] != 1 && map[x, y - 2] != 1)
+                        {
+                            int rng = UnityEngine.Random.Range(1, 4);
+                            switch (rng)
+                            {
+                                case 1:
+                                if (groundNbr % rngGround1 == 0)
+                                {
+                                    highlightTile = stone;
+                                    rngGround1 = UnityEngine.Random.Range(45, 50);
+                                }
+                                    break;
+
+                                case 2:
+                                if (groundNbr % rngGround2 == 0)
+                                {
+                                    highlightTile = longGrass;
+                                    rngGround2 = UnityEngine.Random.Range(45, 50);
+                                }
+                                    break;
+
+                                case 3:
+                                if (groundNbr % rngGround3 == 0)
+                                {
+                                    highlightTile = wood;
+                                    rngGround3 = UnityEngine.Random.Range(45, 50);
+                                }
+                                    break;
+                            }
+
                         }
 
                         groundMap.SetTile(new Vector3Int(-width / 2 + x + roomOffsetX, -(height / 2 + y + roomOffsetY), 0), highlightTile);

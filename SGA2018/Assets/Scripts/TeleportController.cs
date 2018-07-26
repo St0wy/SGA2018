@@ -46,28 +46,28 @@ public class TeleportController : MonoBehaviour
         if (col.gameObject == TopTeleport && floor.CheckRoomUp(floor.floor, roomX, roomY))
         {
             cam.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y + OFFSET_Y, cam.transform.position.z);
-            transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.transform.position.x, cam.transform.position.y - 4, transform.position.z);
             roomY--;
         }
 
         if (col.gameObject == DownTeleport && floor.CheckRoomDown(floor.floor, roomX, roomY))
         {
             cam.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y - OFFSET_Y, cam.transform.position.z);
-            transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, transform.position.z);
+            transform.position = new Vector3(transform.transform.position.x, cam.transform.position.y + 3, transform.position.z);
             roomY++;
         }
 
         if (col.gameObject == LeftTeleport && floor.CheckRoomLeft(floor.floor, roomX, roomY))
         {
             cam.transform.position = new Vector3(cam.transform.position.x - OFFSET_X, cam.transform.position.y, cam.transform.position.z);
-            transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, transform.position.z);
+            transform.position = new Vector3(cam.transform.position.x + 8, transform.transform.position.y, transform.position.z);
             roomX--;
         }
 
         if (col.gameObject == RightTeleport && floor.CheckRoomRight(floor.floor, roomX, roomY))
         {
             cam.transform.position = new Vector3(cam.transform.position.x + OFFSET_X, cam.transform.position.y, cam.transform.position.z);
-            transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, transform.position.z);
+            transform.position = new Vector3(cam.transform.position.x - 8, transform.transform.position.y, transform.position.z);
             roomX++;
         }
     }
