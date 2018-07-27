@@ -11,13 +11,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] [Range(1, 500)] private float speed;
 
     private Transform target;
-    private float timer;
-    private BoxCollider2D playerCollider;
-
+    
     // Use this for initialization
     void Start()
     {
-        playerCollider = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -28,8 +25,6 @@ public class Enemy : MonoBehaviour
         Vector2 velocity = (transform.position - target.position).normalized * speed * 10 * Time.deltaTime;
 
         enemyRigidBody.velocity = -velocity;
-
-        
     }
 
 }
