@@ -2,21 +2,74 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+class Point
+{
+
+    private int _x;
+    private int _y;
+
+    public int X
+    {
+        get { return _x; }
+    }
+
+    public int Y
+    {
+        get { return _y; }
+    }
+
+    public Point(int x, int y)
+    {
+        this._x = x;
+        this._y = y;
+    }
+}
+
 public class TeleportController : MonoBehaviour
 {
+
+    private Dictionary<Point, bool> clearedRooms;
+    private Dictionary<Point, GameObject> enemisList;
 
     public GameObject TopTeleport;
     public GameObject DownTeleport;
     public GameObject LeftTeleport;
     public GameObject RightTeleport;
+    public GameObject teleportParticle;
     public Camera cam;
     public FloorGenerator floor;
+    public GameObject enemy;
+
+    public AudioClip tp;
 
     private int roomX = 6;
     private int roomY = 6;
 
     private const int OFFSET_X = 30 + 3;
     private const int OFFSET_Y = 18 + 3;
+
+    private void Start()
+    {
+        GetComponent<AudioSource>().playOnAwake = false;
+        GetComponent<AudioSource>().clip = tp;
+
+        for (int x = 0; x < floor.floor.GetLength(0); x++)
+        {
+            for (int y = 0; y < floor.floor.GetLength(1); y++)
+            {
+                if (floor.floor[x, y] == 1)
+                {
+                    clearedRooms.Add(new Point(x, y), false);
+
+                    for (int nrbE = 0; nrbE < 7; nrbE++)
+                    {
+                        enemisList.Add(new Point(x, y), Instantiate(enemy));
+                        enemisList[new Point(x, y)].gameObject.transform.SetPositionAndRotation(new Vector2(transform.position.x - 2, transform.position.y), Quaternion.identity);
+                    }
+                }
+            }
+        }
+    }
 
     void Update()
     {
@@ -69,6 +122,19 @@ public class TeleportController : MonoBehaviour
             cam.transform.position = new Vector3(cam.transform.position.x + OFFSET_X, cam.transform.position.y, cam.transform.position.z);
             transform.position = new Vector3(cam.transform.position.x - 8, transform.transform.position.y, transform.position.z);
             roomX++;
+        }
+
+        GetComponent<AudioSource>().Play();
+
+        foreach (var particleSystem in teleportParticle.GetComponentsInChildren<ParticleSystem>())
+        {
+            particleSystem.Stop();
+            particleSystem.Play();
+        }
+
+        if (clearedRooms.ContainsKey(new Point(roomX, roomY)))
+        {
+            // Faire apparaitre les ennemis
         }
     }
 }

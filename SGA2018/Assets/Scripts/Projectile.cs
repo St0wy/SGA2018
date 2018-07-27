@@ -4,14 +4,28 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour {
 
-    float range = 1f;
+    public Vector2 direction = Vector2.zero;
+    public float range = 3;
+    public bool enemy = true;
+    [SerializeField]
+    private float speedMultiplier = 2f;
+
 	// Use this for initialization
 	void Start () {
-        Destroy(this, range);
+        GetComponent<Rigidbody2D>().AddForce(direction/50 * speedMultiplier);
+        Destroy(this.gameObject, range);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "wall" || collision.gameObject.tag == "enemy")
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
