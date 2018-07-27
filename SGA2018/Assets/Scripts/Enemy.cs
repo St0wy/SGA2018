@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     public GameObject player;
     public int lifePoint;
 
-    [SerializeField] [Range(1, 500)] private float speed;
+    [SerializeField] [Range(1, 100)] private float speed;
 
     private Transform target;
     

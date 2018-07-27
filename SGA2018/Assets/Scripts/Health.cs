@@ -7,21 +7,14 @@ public class Health : MonoBehaviour
 {
 
     public bool enemy = true;
-    [SerializeField] private int health = 0;
+    public int health;
     public GameObject Blood_onDeath;
     public GameObject Blood_onHit;
 
     // Use this for initialization
     void Start()
     {
-        if (enemy)
-        {
-            health = 2;
-        }
-        else if (!enemy)
-        {
-            health = 6;
-        }
+        
     }
 
     // Update is called once per frame
